@@ -20,6 +20,29 @@ def count_letter_frequency(text):
     return char_counts
 
 
+def sort_on_value(dict):
+    return dict["num"]
+
+
+def generate_report(book_path):
+    book_path = "books/frankenstein.txt"
+
+    text = get_book_text(book_path)
+    text_word_count = count_words(text)
+    character_frequencies = count_letter_frequency(text)
+
+    character_frequencies.sort(reverse=True, key=sort_on_value)
+
+    print(f"--- Begin report of {book_path} ---")
+
+    print(f"{text_word_count} words found in the document\n")
+
+    for k, v in character_frequencies.items():
+        print(f"The '{k}' character was found {v} times")
+
+    print("--- End report ---")
+
+
 def main():
     book_path = "books/frankenstein.txt"
     text = get_book_text(book_path)
